@@ -21,15 +21,15 @@ int main(void){
         }
 
         for(i=0; i<index; i++){
-			for(j=strlen(word[i]);j>0;j--){
-                if(word[i][j-1]=='\n'||word[i][j-1]==' ') continue;
-                printf("%c",word[i][j-1]);
-            }
-            if(i==index-1) break;
-			printf(" ");
+		for(j=strlen(word[i]);j>0;j--){
+                	if(word[i][j-1]=='\n'||word[i][j-1]==' ') continue;
+                	printf("%c",word[i][j-1]);
+            	}
+        	if(i==index-1) break;
+		printf(" ");
         }
         if(!n) break;
-		printf("\n");
+	printf("\n");
     }
     return 0;
 }
