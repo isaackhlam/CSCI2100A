@@ -7,9 +7,9 @@ int main(void){
     while(n--){
         char str[257]="";
         char word[257][51];
-        int index=0,j;
+        int index=0,i=0,j=0;
         fgets(str, 257, stdin);
-        for(int i=0; i<=strlen(str);i++){
+        for(i=0; i<=strlen(str);i++){
             if(str[i]==' '||str[i]=='\0'){
                 word[index][j]='\0';
                 index++;    //i-th word++
@@ -20,15 +20,16 @@ int main(void){
             }
         }
 
-        for(int i=0; i<index; i++){
-            for(j=strlen(word[i]);j>0;j--){
-                if(word[i][j-1]=='\n') continue;
+        for(i=0; i<index; i++){
+			for(j=strlen(word[i]);j>0;j--){
+                if(word[i][j-1]=='\n'||word[i][j-1]==' ') continue;
                 printf("%c",word[i][j-1]);
             }
-            printf(" ");
+            if(i==index-1) break;
+			printf(" ");
         }
-        printf("\n");
-
+        if(!n) break;
+		printf("\n");
     }
     return 0;
 }
