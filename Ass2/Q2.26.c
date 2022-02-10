@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define NUM 100
+#define NUM 1000
 
 typedef struct queue{
     int q[NUM];
