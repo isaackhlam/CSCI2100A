@@ -18,7 +18,7 @@ int main(void){
         fgets(str,256,stdin);
         for(i=0; i<strlen(str); i++)
             if(str[i]==' '||str[i]=='\0'){
-                word[index][j]='0';
+                word[index][j]='\0';
                 index++;
                 j=0;
             }else{
@@ -26,45 +26,62 @@ int main(void){
                 j++;
             }
         //Computation part
-        int t1,t2;
-        for(i=0; i<index; i++){
+        int t1,t2,calerr=0;
+        for(i=0; i<=index; i++){
             switch(word[i][0]){
                 case '+':
                     ans=pop()+pop();
                     push(ans);
+                    index++;
                     break;
                 case '-':
-                    ans=pop()-pop();
+                    if(word[i][1]!='\0'){
+                        push(atoi(word[i]));
+                        break;
+                    }
+                    t2=pop();
+                    t1=pop();
+                    ans=t1-t2;
                     push(ans);
+                    index++;
                     break;
                 case '*':
                     ans=pop()*pop();
                     push(ans);
+                    index++;
                     break;
                 case '/':
-                    t1=pop();
                     t2=pop();
+                    t1=pop();
                     if (!t2){
                         printf("division by zero\n");
                         i=index;
+                        calerr=1;
                         break;
                     }
                     ans=t1/t2;
-                    push(ans); 
+                    push(ans);
+                    index++;
                     break;
                 case '!':
                     t1=pop();
                     if(t1<0){
                         printf("factorial of an negative number\n");
                         i=index;
+                        calerr=1;
                         break;
                     }
                     ans=fact(t1);
                     push(ans);
+                    index++;
                     break;
                 default:
                     push(atoi(word[i]));
             }
+        }
+        if(calerr){
+            for(i=0; i<NUM; i++) stack[i]=0;
+            continue;
         }
         printf("%d\n",ans);
     }
@@ -88,7 +105,7 @@ int pop(void){
 
 int fact(int n){
     int ans=1;
-    if(n=1) return 1;
-    ans *= fact(n-1);
+    if(n==1) return 1;
+    ans *= n*fact(n-1);
     return ans;
 }
