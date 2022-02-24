@@ -36,3 +36,9 @@ void printQueue(void){
         printf("%d",qu.q[i]);
     printf("\n");
 }
+
+void reversePrintQueue(void){
+    for(int i=qu.rear; i>=qu.front+1; i--)
+        printf("%d",qu.q[i]);
+    printf("\n");
+}
