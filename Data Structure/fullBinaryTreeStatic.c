@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdilb.h>
+#include <stdlib.h>
 #define lchild(i) 2*i
 #define rchild(i) 2*i+1
 
 typedef struct node{
-    char data;
+    int data;
     struct node* lchild;
     struct node* rchild;
 }NODE;
@@ -53,5 +53,3 @@ void postorder(NODE* p){
     printf("%d",p->data);
   }
 }
-
-  
