@@ -26,13 +26,14 @@ int main(void){
 }
 
 void build(NODE tree[],int n){
-    for(int i=1; i<n+1; i++){
+    for(int i=1; i<n+1; i++)
         scanf("%d",&tree[i].data);
-        if(lchild(i)<n+1&&tree[i].data)
+    for(int i=1; i<n+1; i++){
+        if(lchild(i)<n+1&&tree[i].data&&tree[lchild(i)].data)
             tree[i].lchild = &tree[lchild(i)];
         else
             tree[i].lchild = NULL;
-        if(rchild(i)<n+1&&tree[i].data)
+        if(rchild(i)<n+1&&tree[i].data&&tree[rchild(i)].data)
             tree[i].rchild = &tree[rchild(i)];
         else
             tree[i].rchild = NULL;
@@ -42,7 +43,7 @@ void build(NODE tree[],int n){
 void printTree(NODE* p){
   if(p){
     printTree(p->lchild);
-    if(p->data) printf("%d ",p->data);
+    printf("%d ",p->data);
     printTree(p->rchild);
   }
 }
