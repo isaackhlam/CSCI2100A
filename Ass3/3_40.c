@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #define lchild(i) 2*i
 #define rchild(i) 2*i+1
-#define NUM 10004
 
 typedef struct node{
     int data;
@@ -11,6 +10,7 @@ typedef struct node{
 }NODE;
 
 void printTree(NODE*);
+void build(NODE[],int);
 
 int main(void){
     int test,n;
@@ -18,21 +18,25 @@ int main(void){
     while(test--){
         scanf("%d",&n);
         NODE tree[n+1];
-        for(int i=1; i<n+1; i++){
-        scanf("%d",&tree[i].data);
-        if(lchild(i)<n+1)
-            tree[i].lchild = &tree[lchild(i)];
-        else
-            tree[i].lchild = NULL;
-        if(rchild(i)<n+1)
-            tree[i].rchild = &tree[rchild(i)];
-        else
-            tree[i].rchild = NULL;
-        }
+        build(tree,n);
         printTree(tree+1);
         printf("\n");
     }
     return 0;
+}
+
+void build(NODE tree[],int n){
+    for(int i=1; i<n+1; i++){
+        scanf("%d",&tree[i].data);
+        if(lchild(i)<n+1&&tree[i].data)
+            tree[i].lchild = &tree[lchild(i)];
+        else
+            tree[i].lchild = NULL;
+        if(rchild(i)<n+1&&tree[i].data)
+            tree[i].rchild = &tree[rchild(i)];
+        else
+            tree[i].rchild = NULL;
+    }
 }
 
 void printTree(NODE* p){
